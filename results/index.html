@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><meta name="description" content="How the NFL Lines Lab featured sides and model lines have done, week by week."><title>Results</title><style>
+/* Tokens per DESIGN.md; same values as dashboard_template.html */
+:root{color-scheme:light;
+  --bg:#f5f5f7;--tile:#ffffff;--tile-2:#f5f5f7;--ink:#1d1d1f;--ink-2:#6e6e73;--ink-3:#86868b;--hair:#d2d2d7;--seg:#e8e8ed;
+  --blue:#0071e3;--blue-hover:#0077ed;--link:#0066cc;--pos:#248a3d;--neg:#d70015;--warn:#c93400;--warn-bg:#fff4e5;--g5:#248a3d;--g3:#6fbf7f;--r2:#e08585;--r1:#d70015;--nav:rgba(255,255,255,.8);
+  --focus:rgba(0,113,227,.3)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;
+  --bg:#000000;--tile:#1d1d1f;--tile-2:#2c2c2e;--ink:#f5f5f7;--ink-2:#a1a1a6;--ink-3:#86868b;--hair:#424245;--seg:#3a3a3c;
+  --blue:#2997ff;--blue-hover:#3ea0ff;--link:#2997ff;--pos:#248a3d;--neg:#e5323e;--warn:#ffb340;--warn-bg:#3a2a12;--g5:#30d158;--g3:#5aa86c;--r2:#c46464;--r1:#ff453a;--nav:rgba(29,29,31,.8);
+  --focus:rgba(41,151,255,.35)}}
+:root[data-theme="dark"]{color-scheme:dark;
+  --bg:#000000;--tile:#1d1d1f;--tile-2:#2c2c2e;--ink:#f5f5f7;--ink-2:#a1a1a6;--ink-3:#86868b;--hair:#424245;--seg:#3a3a3c;
+  --blue:#2997ff;--blue-hover:#3ea0ff;--link:#2997ff;--pos:#248a3d;--neg:#e5323e;--warn:#ffb340;--warn-bg:#3a2a12;--g5:#30d158;--g3:#5aa86c;--r2:#c46464;--r1:#ff453a;--nav:rgba(29,29,31,.8);
+  --focus:rgba(41,151,255,.35)}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.47059 -apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Helvetica,Arial,sans-serif;letter-spacing:-.022em;font-variant-numeric:tabular-nums;min-height:100vh;-webkit-font-smoothing:antialiased}
+a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}
+h1,h2{margin:0;text-wrap:balance;color:var(--ink)}
+h1{font-size:40px;line-height:1.1;font-weight:600;letter-spacing:-.003em}
+h2{font-size:21px;line-height:1.19;font-weight:600;letter-spacing:.011em}
+p{margin:8px 0}
+:focus-visible{outline:none;box-shadow:0 0 0 4px var(--focus);border-radius:6px}
+.skip{position:absolute;left:-999px;top:8px;background:var(--tile);color:var(--link);padding:10px 14px;border-radius:980px;z-index:40}
+.skip:focus{left:8px}
+
+/* Shell */
+.shell{min-height:100vh;padding-bottom:64px}
+header.localnav{position:sticky;top:0;z-index:20;background:var(--nav);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--hair)}
+.ln-inner{max-width:1200px;margin:0 auto;padding:0 22px;height:52px;display:flex;align-items:center;gap:24px}
+.brand{font-size:21px;font-weight:600;letter-spacing:.011em;color:var(--ink);white-space:nowrap;display:inline-flex;align-items:center;min-height:44px}
+.brand:hover{text-decoration:none}
+nav.tabs{display:flex;gap:26px;margin-left:auto}
+nav.tabs a{font-size:12px;letter-spacing:-.01em;color:var(--ink);opacity:.8;white-space:nowrap;padding:0 4px;min-height:44px;display:inline-flex;align-items:center;gap:6px}
+nav.tabs a svg{display:none}
+nav.tabs a:hover{opacity:1;text-decoration:none}
+nav.tabs a.active{opacity:1;font-weight:600}
+main{max-width:1200px;margin:0 auto;padding:0 22px}
+.narrow{max-width:760px;margin:0 auto}
+
+/* Hero */
+.hero{padding:44px 0 18px}
+.hero .sub{font-size:17px;line-height:1.47;letter-spacing:-.022em;color:var(--ink-2);margin:6px 0 0}
+
+/* Tile */
+.tile{background:var(--tile);border-radius:18px;padding:0 20px}
+.tile .one{padding:16px 0;margin:0;color:var(--ink-2)}
+
+/* Dots */
+.dots{display:inline-flex;align-items:center;gap:4px;vertical-align:middle}
+.dots i{display:block;width:8px;height:8px;border-radius:50%;border:1px solid var(--hair);background:transparent}
+.dots i.on{background:var(--blue);border-color:var(--blue)}
+.dots.flag i.on{background:var(--warn);border-color:var(--warn)}
+.dots.pass i.on{background:var(--ink-3);border-color:var(--ink-3)}
+.dots.n5 i.on{background:var(--g5);border-color:var(--g5)}.dots.n4 i.on,.dots.n3 i.on{background:var(--g3);border-color:var(--g3)}.dots.n2 i.on{background:var(--r2);border-color:var(--r2)}.dots.n1 i.on{background:var(--r1);border-color:var(--r1)}
+.dots.flag+.word{color:var(--warn);font-weight:600}
+.lgs{display:inline-flex;align-items:center;vertical-align:middle;margin-right:6px}.lgs img{width:20px;height:20px;object-fit:contain;display:block}.lgs{gap:6px}.lgs img+img{margin-left:0}
+.pair{display:inline-flex;align-items:center;gap:6px;vertical-align:middle}.pair img{width:20px;height:20px;object-fit:contain}.pair .ab{font-weight:600;color:var(--ink)}.pair .vs{font-size:12px;color:var(--ink-3);margin:0 2px}
+.mast{position:relative;overflow:hidden;margin:16px 0 0;padding:26px 22px 20px;border-radius:22px;background:linear-gradient(160deg,#2f8a4f 0%,#1f6b3a 45%,#154f2b 100%);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+:root[data-theme="dark"] .mast{background:linear-gradient(160deg,#276f42,#1a5530 50%,#113d22)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .mast{background:linear-gradient(160deg,#276f42,#1a5530 50%,#113d22)}}
+.mast .gl{background:rgba(0,0,0,.22)}
+.mast .dots.n5 i.on{background:#7ff0a4;border-color:#7ff0a4}.mast .dots.n4 i.on,.mast .dots.n3 i.on{background:#c6f2d1;border-color:#c6f2d1}.mast .dots.n2 i.on{background:#f5a3a3;border-color:#f5a3a3}.mast .dots.n1 i.on{background:#ff6b6b;border-color:#ff6b6b}.mast .dots i{border-color:rgba(255,255,255,.45)}
+.mast .field{position:absolute;right:-6%;top:0;height:100%;width:78%;pointer-events:none;-webkit-mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.6) 35%,#000 70%);mask-image:linear-gradient(90deg,transparent 0,rgba(0,0,0,.6) 35%,#000 70%)}
+.mast>*:not(.field){position:relative}
+.mast .kicker{font-size:13px;letter-spacing:-.01em;color:rgba(255,255,255,.62);margin:0 0 2px}
+.mast h1{display:flex;align-items:baseline;gap:10px;color:#fff;line-height:1;margin:0}
+.mast h1 .wk{font-size:24px;font-weight:600;letter-spacing:-.01em}
+.mast h1 .num{font-size:72px;font-weight:700;letter-spacing:-.04em;line-height:.9}
+.mast h1 .tail{font-size:24px;font-weight:600;letter-spacing:-.01em;color:rgba(255,255,255,.72)}
+.mast .lead{font-size:16px;line-height:1.4;letter-spacing:-.016em;color:rgba(255,255,255,.8);margin:14px 0 0;max-width:34ch}
+.mast .glance{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;padding:0;background:transparent;border-radius:0;width:auto}
+.mast .gl{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:980px;background:rgba(255,255,255,.1);font-size:13px;color:rgba(255,255,255,.85);white-space:nowrap}
+.mast .gl b{color:#fff;font-weight:600;font-size:14px}
+.mast .gl .word{color:rgba(255,255,255,.85);margin-left:0}
+.mast .dots i{border-color:rgba(255,255,255,.35)}
+.mast .dots.flag+.word{color:#ffb340}
+.mast .using{color:rgba(255,255,255,.7)}
+@media (min-width:901px){.mast{padding:40px 40px 32px;margin-top:24px}.mast h1 .num{font-size:104px}.mast h1 .wk,.mast h1 .tail{font-size:30px}.mast .lead{font-size:19px;max-width:40ch}}
+.dots.md{gap:5px}.dots.md i{width:10px;height:10px}
+.dots+.word{margin-left:8px}
+.word{font-size:12px;letter-spacing:-.01em;color:var(--ink-3);line-height:1}
+
+/* Picks */
+.pick{padding:16px 0;border-bottom:1px solid var(--hair)}
+.pick:last-child{border-bottom:0}
+.pick .top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.pick .side{font-size:21px;font-weight:600;letter-spacing:-.01em;line-height:1.2}
+.pick .side small{font-size:17px;font-weight:400;color:var(--ink-2);margin-left:6px}
+.pick .conf{display:flex;align-items:center;white-space:nowrap}
+.pick .game{font-size:14px;letter-spacing:-.016em;color:var(--ink-2);margin:2px 0 0}
+.pick .why{font-size:15px;letter-spacing:-.016em;color:var(--ink);margin:6px 0 0}
+.pick .flagline{font-size:14px;letter-spacing:-.016em;color:var(--warn);font-weight:600;margin:4px 0 0}
+.thin h2{margin:28px 0 8px}
+.thin .sub{font-size:14px;letter-spacing:-.016em;color:var(--ink-2);margin:0 0 10px}
+.more{margin:20px 0 0}
+.more a{display:inline-flex;align-items:center;min-height:44px}
+.foot{margin:32px 0 0;font-size:12px;line-height:1.33337;letter-spacing:-.01em;color:var(--ink-3)}
+
+/* Phone */
+@media (max-width:900px){
+  header.localnav{-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--tile)}
+  .ln-inner{padding:0 16px;height:48px;gap:12px;justify-content:center}
+  .brand{font-size:17px}
+  nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:30;margin:0;gap:0;background:var(--nav);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-top:1px solid var(--hair);padding:6px 0 max(8px,env(safe-area-inset-bottom))}
+  nav.tabs a{flex:1;flex-direction:column;justify-content:center;gap:2px;text-align:center;font-size:10px;padding:4px 2px;opacity:.6;min-height:44px}
+  nav.tabs a svg{display:block;width:24px;height:24px}
+  nav.tabs a.active{opacity:1;color:var(--blue);font-weight:600}
+  main{padding:0 16px}
+  .shell{padding-bottom:96px}
+  h1{font-size:32px;line-height:1.125}
+  .hero{padding:20px 0 6px}
+  .hero .sub{font-size:15px;letter-spacing:-.016em}
+  .tile{padding:0 16px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style><style>
+.tile h2{padding:16px 0 4px}
+.tablewrap{overflow-x:auto;max-width:100%}
+table{border-collapse:collapse;width:100%;font-size:14px;letter-spacing:-.016em}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--hair);vertical-align:middle;white-space:nowrap}
+th{font-weight:600;color:var(--ink-3);font-size:12px;letter-spacing:-.01em}
+tr:last-child td{border-bottom:0}
+td .dots{vertical-align:-1px}
+.rs{display:inline-block;padding:2px 8px;border-radius:6px;font-size:12px;font-weight:600;color:#fff;background:var(--ink-3)}
+.rs.win{background:var(--pos)}.rs.loss{background:var(--neg)}
+.side{font-weight:600}.side small{font-weight:400;color:var(--ink-2);margin-left:4px}
+.note{font-size:14px;line-height:1.43;letter-spacing:-.016em;color:var(--ink-2);margin:4px 0 12px}
+.sug{margin:0;padding:0 0 12px;list-style:none}
+.sug li{padding:10px 0;border-bottom:1px solid var(--hair);font-size:15px;letter-spacing:-.016em}
+.sug li:last-child{border-bottom:0}
+.sug .st{display:block;font-size:12px;color:var(--ink-3);margin-top:2px}
+.sug .ev{display:block;font-size:14px;color:var(--ink-2);margin-top:2px}
+.empty{padding:20px 0;color:var(--ink-2)}
+h2+.note{margin-top:0}
+</style></head><body><a class="skip" href="#results">Skip to content</a><div class="shell"><header class="localnav"><div class="ln-inner"><a class="brand" href="../">NFL Lines Lab</a><nav class="tabs" aria-label="Sections"><a href="../#/slate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h14"/></svg>Games</a><a href="../picks/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L12 16.9l-5.3 2.8 1.1-5.9-4.3-4.1 5.9-.8z"/></svg>Picks</a><a class="active" href="../#/more" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="8" cy="12" r="1" fill="currentColor"/><circle cx="12" cy="12" r="1" fill="currentColor"/><circle cx="16" cy="12" r="1" fill="currentColor"/></svg>More</a></nav></div></header><main id="results"><div class="narrow"><section class="mast" aria-label="Results"><svg class="field" viewBox="0 0 900 300" preserveAspectRatio="xMaxYMid slice" aria-hidden="true"><line x1="0" y1="0" x2="0" y2="300" stroke="#fff" stroke-opacity="0.13" stroke-width="1"/><line x1="90" y1="0" x2="90" y2="300" stroke="#fff" stroke-opacity="0.13" stroke-width="1"/><line x1="180" y1="0" x2="180" y2="300" stroke="#fff" stroke-opacity="0.13" stroke-width="1"/><line x1="270" y1="0" x2="270" y2="300" stroke="#fff" stroke-opacity="0.13" stroke-width="1"/><line x1="360" y1="0" x2="360" y2="300" stroke="#fff" stroke-opacity="0.13" stroke-width="1"/><line x1="450" y1="0" x2="450" y2="300" stroke="#fff" stroke-opacity="0.22" stroke-width="2"/><line x1="540" y1="0" x2="540" y2="300" stroke="#fff" stroke-opacity="0.13" stroke-width="1"/><line x1="630" y1="0" x2="630" y2="300" stroke="#fff" stroke-opacity="0.13" stroke-width="1"/><line x1="720" y1="0" x2="720" y2="300" stroke="#fff" stroke-opacity="0.13" stroke-width="1"/><line x1="810" y1="0" x2="810" y2="300" stroke="#fff" stroke-opacity="0.13" stroke-width="1"/><line x1="900" y1="0" x2="900" y2="300" stroke="#fff" stroke-opacity="0.13" stroke-width="1"/><line x1="0" y1="96" x2="0" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="0" y1="192" x2="0" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="18" y1="96" x2="18" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="18" y1="192" x2="18" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="36" y1="96" x2="36" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="36" y1="192" x2="36" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="54" y1="96" x2="54" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="54" y1="192" x2="54" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="72" y1="96" x2="72" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="72" y1="192" x2="72" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="90" y1="96" x2="90" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="90" y1="192" x2="90" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="108" y1="96" x2="108" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="108" y1="192" x2="108" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="126" y1="96" x2="126" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="126" y1="192" x2="126" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="144" y1="96" x2="144" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="144" y1="192" x2="144" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="162" y1="96" x2="162" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="162" y1="192" x2="162" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="180" y1="96" x2="180" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="180" y1="192" x2="180" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="198" y1="96" x2="198" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="198" y1="192" x2="198" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="216" y1="96" x2="216" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="216" y1="192" x2="216" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="234" y1="96" x2="234" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="234" y1="192" x2="234" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="252" y1="96" x2="252" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="252" y1="192" x2="252" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="270" y1="96" x2="270" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="270" y1="192" x2="270" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="288" y1="96" x2="288" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="288" y1="192" x2="288" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="306" y1="96" x2="306" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="306" y1="192" x2="306" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="324" y1="96" x2="324" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="324" y1="192" x2="324" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="342" y1="96" x2="342" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="342" y1="192" x2="342" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="360" y1="96" x2="360" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="360" y1="192" x2="360" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="378" y1="96" x2="378" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="378" y1="192" x2="378" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="396" y1="96" x2="396" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="396" y1="192" x2="396" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="414" y1="96" x2="414" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="414" y1="192" x2="414" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="432" y1="96" x2="432" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="432" y1="192" x2="432" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="450" y1="96" x2="450" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="450" y1="192" x2="450" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="468" y1="96" x2="468" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="468" y1="192" x2="468" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="486" y1="96" x2="486" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="486" y1="192" x2="486" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="504" y1="96" x2="504" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="504" y1="192" x2="504" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="522" y1="96" x2="522" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="522" y1="192" x2="522" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="540" y1="96" x2="540" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="540" y1="192" x2="540" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="558" y1="96" x2="558" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="558" y1="192" x2="558" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="576" y1="96" x2="576" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="576" y1="192" x2="576" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="594" y1="96" x2="594" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="594" y1="192" x2="594" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="612" y1="96" x2="612" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="612" y1="192" x2="612" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="630" y1="96" x2="630" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="630" y1="192" x2="630" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="648" y1="96" x2="648" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="648" y1="192" x2="648" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="666" y1="96" x2="666" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="666" y1="192" x2="666" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="684" y1="96" x2="684" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="684" y1="192" x2="684" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="702" y1="96" x2="702" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="702" y1="192" x2="702" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="720" y1="96" x2="720" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="720" y1="192" x2="720" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="738" y1="96" x2="738" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="738" y1="192" x2="738" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="756" y1="96" x2="756" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="756" y1="192" x2="756" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="774" y1="96" x2="774" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="774" y1="192" x2="774" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="792" y1="96" x2="792" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="792" y1="192" x2="792" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="810" y1="96" x2="810" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="810" y1="192" x2="810" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="828" y1="96" x2="828" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="828" y1="192" x2="828" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="846" y1="96" x2="846" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="846" y1="192" x2="846" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="864" y1="96" x2="864" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="864" y1="192" x2="864" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="882" y1="96" x2="882" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="882" y1="192" x2="882" y2="204" stroke="#fff" stroke-opacity=".12"/><line x1="900" y1="96" x2="900" y2="108" stroke="#fff" stroke-opacity=".12"/><line x1="900" y1="192" x2="900" y2="204" stroke="#fff" stroke-opacity=".12"/><text x="90" y="172" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif" font-size="46" font-weight="700" fill="#fff" fill-opacity=".07" letter-spacing="2">10</text><text x="180" y="172" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif" font-size="46" font-weight="700" fill="#fff" fill-opacity=".07" letter-spacing="2">20</text><text x="270" y="172" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif" font-size="46" font-weight="700" fill="#fff" fill-opacity=".07" letter-spacing="2">30</text><text x="360" y="172" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif" font-size="46" font-weight="700" fill="#fff" fill-opacity=".07" letter-spacing="2">40</text><text x="450" y="172" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif" font-size="46" font-weight="700" fill="#fff" fill-opacity=".07" letter-spacing="2">50</text><text x="540" y="172" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif" font-size="46" font-weight="700" fill="#fff" fill-opacity=".07" letter-spacing="2">40</text><text x="630" y="172" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif" font-size="46" font-weight="700" fill="#fff" fill-opacity=".07" letter-spacing="2">30</text><text x="720" y="172" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif" font-size="46" font-weight="700" fill="#fff" fill-opacity=".07" letter-spacing="2">20</text><text x="810" y="172" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif" font-size="46" font-weight="700" fill="#fff" fill-opacity=".07" letter-spacing="2">10</text></svg><p class="kicker">NFL 2026 season</p><h1><span class="wk">Results</span></h1><p class="lead">First results arrive after Week 1 is final.</p></section><div class="tile"><p class="empty">Each week, once the games are final, this page shows the side we featured for every game, how it did at the price shown, and how the model's line compared with the market's.</p></div><p class="more"><a href="../">Open the full dashboard &#8250;</a></p><p class="foot">Featured sides are scored against the last picks build before each kickoff, at the line and odds it showed. Paper results, not bets. Records this small are bookkeeping, not evidence; the dots need about 40 sides per level before they separate.</p></div></main></div></body></html>
