@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="description" content="This week's NFL sides worth a look, ranked by how well the model's value holds up."><title>Week 1 picks</title><style>
+/* NFL Lines Lab: Apple product-page / iOS app language. See DESIGN.md.
+   Radius system: tiles 18, inner tiles + inputs 12, value pills 6, buttons + segmented control full pill. */
+:root{color-scheme:light;
+  --bg:#f5f5f7;--tile:#ffffff;--tile-2:#f5f5f7;--ink:#1d1d1f;--ink-2:#6e6e73;--ink-3:#86868b;--hair:#d2d2d7;--seg:#e8e8ed;--seg-on:#ffffff;
+  --blue:#0071e3;--blue-hover:#0077ed;--link:#0066cc;--pos:#248a3d;--neg:#d70015;--warn:#c93400;--warn-bg:#fff4e5;--nav:rgba(255,255,255,.8);
+  --chip-fg:#fff;--focus:rgba(0,113,227,.3);--seg-shadow:0 3px 8px rgba(0,0,0,.12),0 3px 1px rgba(0,0,0,.04);
+  --surface:var(--tile);--surface-2:var(--tile-2);--muted:var(--ink-2);--line:var(--hair);--line-strong:var(--ink-3);--accent:var(--blue);--accent-ink:#fff;--tint:#eef5ff;--pos-bg:#e9f5ec;--neg-bg:#fdecec;--bar-away:#a1a1a6;--bar-tie:#e8e8ed;--bar-home:var(--blue)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;
+  --bg:#000000;--tile:#1d1d1f;--tile-2:#2c2c2e;--ink:#f5f5f7;--ink-2:#a1a1a6;--ink-3:#86868b;--hair:#424245;--seg:#3a3a3c;--seg-on:#636366;
+  --blue:#2997ff;--blue-hover:#3ea0ff;--link:#2997ff;--pos:#248a3d;--neg:#e5323e;--warn:#ffb340;--warn-bg:#3a2a12;--nav:rgba(29,29,31,.8);
+  --focus:rgba(41,151,255,.35);--seg-shadow:0 3px 8px rgba(0,0,0,.5);--accent-ink:#000;--tint:#0d2a4a;--pos-bg:#12351c;--neg-bg:#3d1417;--bar-away:#636366;--bar-tie:#3a3a3c}}
+:root[data-theme="dark"]{color-scheme:dark;
+  --bg:#000000;--tile:#1d1d1f;--tile-2:#2c2c2e;--ink:#f5f5f7;--ink-2:#a1a1a6;--ink-3:#86868b;--hair:#424245;--seg:#3a3a3c;--seg-on:#636366;
+  --blue:#2997ff;--blue-hover:#3ea0ff;--link:#2997ff;--pos:#248a3d;--neg:#e5323e;--warn:#ffb340;--warn-bg:#3a2a12;--nav:rgba(29,29,31,.8);
+  --focus:rgba(41,151,255,.35);--seg-shadow:0 3px 8px rgba(0,0,0,.5);--accent-ink:#000;--tint:#0d2a4a;--pos-bg:#12351c;--neg-bg:#3d1417;--bar-away:#636366;--bar-tie:#3a3a3c}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.47059 -apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Helvetica Neue",Helvetica,Arial,sans-serif;letter-spacing:-.022em;font-variant-numeric:tabular-nums;min-height:100vh;-webkit-font-smoothing:antialiased}
+a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}
+h1,h2,h3{margin:0;text-wrap:balance;color:var(--ink)}
+h1{font-size:48px;line-height:1.0834;font-weight:600;letter-spacing:-.003em}
+h2{font-size:28px;line-height:1.14286;font-weight:600;letter-spacing:.007em}
+h3{font-size:21px;line-height:1.19048;font-weight:600;letter-spacing:.011em;margin-top:28px}
+p{margin:8px 0}
+small,.muted{color:var(--ink-2)}
+.mini{font-size:14px;line-height:1.42859;letter-spacing:-.016em}
+.caption{font-size:12px;line-height:1.33337;letter-spacing:-.01em;color:var(--ink-3)}
+.num{font-variant-numeric:tabular-nums}
+/* Controls */
+button,input,select,textarea{font:inherit;color:inherit;letter-spacing:inherit;border:1px solid var(--ink-3);border-radius:12px;background:var(--tile);padding:12px 16px;min-height:44px}
+input,select,textarea{width:100%;margin:0}
+input::placeholder,textarea::placeholder{color:var(--ink-3);opacity:1}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px var(--focus)}
+input[type=checkbox]{width:auto;min-height:0;margin-right:8px;accent-color:var(--blue);border-radius:4px}
+button{cursor:pointer;border:0;border-radius:980px;background:var(--seg);color:var(--ink);padding:8px 16px;min-height:36px;font-size:15px;font-weight:400;letter-spacing:-.016em;transition:background .2s,color .2s,transform .1s}
+button:hover{background:var(--hair)}
+button:active{transform:scale(.98)}
+button:disabled{opacity:.42;cursor:default}
+button.primary{background:var(--blue);color:#fff;font-weight:400}
+button.primary:hover{background:var(--blue-hover)}
+button.ghost{background:transparent;color:var(--link);padding:6px 8px;min-height:0}
+:focus-visible{outline:none;box-shadow:0 0 0 4px var(--focus)}
+label{display:block;font-size:12px;line-height:1.33;letter-spacing:-.01em;color:var(--ink-2);margin:0 0 6px}
+select{-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%2386868b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.tablewrap{overflow-x:auto;max-width:100%}
+table{border-collapse:collapse;width:100%;font-size:14px;letter-spacing:-.016em}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--hair);vertical-align:top;white-space:nowrap}
+th{font-weight:600;color:var(--ink-3);font-size:12px;letter-spacing:-.01em}
+tr:last-child td{border-bottom:0}
+pre{white-space:pre-wrap;word-break:break-word;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--tile-2);padding:12px;border-radius:12px;max-height:360px;overflow:auto}
+code{font:.92em ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--tile-2);padding:1px 6px;border-radius:6px}
+details{border-top:1px solid var(--hair);padding:14px 0;margin:0}
+details+details{margin-top:0}
+details summary{cursor:pointer;font-weight:600;font-size:17px;list-style:none;display:flex;justify-content:space-between;align-items:center}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";color:var(--ink-3);font-weight:400;font-size:20px;line-height:1}
+details[open] summary::after{content:"\2212"}
+/* Shell */
+.skip{position:absolute;left:-999px;top:8px;background:var(--blue);color:#fff;padding:8px 12px;border-radius:980px;z-index:60}.skip:focus{left:12px}
+.shell{min-height:100vh;padding-bottom:64px}
+header.localnav{position:sticky;top:0;z-index:20;background:var(--nav);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--hair)}
+.ln-inner{max-width:1200px;margin:0 auto;padding:0 22px;height:52px;display:flex;align-items:center;gap:24px}
+.brand{font-size:21px;font-weight:600;letter-spacing:.011em;color:var(--ink);white-space:nowrap}
+.brand:hover{text-decoration:none}
+nav.tabs{display:flex;gap:22px;margin-left:auto}
+nav.tabs a{font-size:12px;letter-spacing:-.01em;color:var(--ink);opacity:.8;white-space:nowrap;padding:4px 0}
+nav.tabs a:hover{opacity:1;text-decoration:none}
+nav.tabs a.active{opacity:1;font-weight:600}
+nav.tabs .lbl-short{display:none}
+.model-pick{display:flex;align-items:center;gap:8px}
+.model-pick label{margin:0;font-size:12px;color:var(--ink-2)}
+.model-pick select{width:auto;min-height:0;border:0;background-color:var(--seg);border-radius:980px;padding:6px 32px 6px 12px;font-size:12px;letter-spacing:-.01em;background-position:right 12px center}
+.model-pick select:focus{box-shadow:0 0 0 4px var(--focus)}
+main{max-width:1200px;margin:0 auto;padding:0 22px}
+#banners{max-width:1200px;margin:0 auto;padding:0 22px}
+.banner{padding:12px 16px;border-radius:12px;margin:16px 0 0;font-size:14px;letter-spacing:-.016em;background:var(--tile);color:var(--ink)}
+.banner.warn{background:var(--warn-bg)}
+.banner.info{background:var(--tint)}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:12px 18px;border-radius:980px;font-size:14px;letter-spacing:-.016em;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50;max-width:min(92vw,560px);text-align:center}
+#toast.show{opacity:1}#toast.error{background:var(--neg);color:#fff}
+/* Hero */
+.hero{text-align:center;padding:56px 0 28px;max-width:980px;margin:0 auto}
+.hero .sub{font-size:21px;line-height:1.381;letter-spacing:.011em;color:var(--ink-2);margin:12px auto 0;max-width:36ch}
+.hero .meta{margin:10px 0 0}
+.hero.small{padding:44px 0 20px}
+.hero.small h1{font-size:40px}
+.legend{font-size:14px;line-height:1.42859;letter-spacing:-.016em;color:var(--ink-2);max-width:66ch;margin:18px auto 0;text-align:center}
+.legend b{color:var(--ink);font-weight:600}
+/* Segmented control */
+.filters{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;margin:22px 0 0}
+.seg{display:inline-flex;background:var(--seg);border-radius:980px;padding:2px;max-width:100%;overflow-x:auto}
+.seg button{background:transparent;border-radius:980px;min-height:32px;padding:6px 14px;font-size:13px;letter-spacing:-.01em;color:var(--ink);white-space:nowrap;transition:background .2s,box-shadow .2s}
+.seg button:hover{background:transparent}
+.seg button.active{background:var(--seg-on);box-shadow:var(--seg-shadow);font-weight:600}
+.filters .count{font-size:12px;color:var(--ink-3);letter-spacing:-.01em}
+/* Tiles */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;margin-top:28px}
+.card{background:var(--tile);border-radius:18px;padding:24px}
+.game{display:flex;flex-direction:column;gap:12px;cursor:pointer;transition:transform .2s}
+.game:hover{transform:translateY(-2px)}
+.game .when{display:flex;justify-content:space-between;gap:10px;font-size:12px;letter-spacing:-.01em;color:var(--ink-3)}
+.game .when span:first-child{white-space:nowrap}.game .when span:last-child{text-align:right}
+.chip{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:10px;background:var(--c);color:var(--fg);font-weight:700;font-size:13px;letter-spacing:0}
+.teams{display:grid;grid-template-columns:auto 1fr auto;gap:10px 12px;align-items:center}
+.teams .nm{font-size:17px;font-weight:600;letter-spacing:-.022em;line-height:1.2;min-width:0}
+.teams .nm small{display:block;font-weight:400;font-size:12px;letter-spacing:-.01em;color:var(--ink-3);margin:2px 0 0;line-height:1.3}
+.teams .sc{font-size:32px;font-weight:600;letter-spacing:-.01em;text-align:right;line-height:1}
+.line-row{display:flex;justify-content:space-between;gap:10px;font-size:15px;letter-spacing:-.016em;padding-top:10px;border-top:1px solid var(--hair)}
+.line-row b{font-weight:600}.line-row small{color:var(--ink-3)}
+.bar{display:flex;height:4px;border-radius:2px;overflow:hidden;background:var(--bar-tie)}
+.bar span{display:block;height:100%}
+.bar .a{background:var(--bar-away)}.bar .h{background:var(--bar-home)}.bar .t{background:var(--bar-tie)}
+.bar-lbl{display:flex;justify-content:space-between;font-size:12px;letter-spacing:-.01em;color:var(--ink-3);margin-top:6px}
+.game .bar-lbl{margin-top:-4px}
+.book{border-top:1px solid var(--hair);padding-top:12px;display:flex;flex-direction:column;gap:8px}
+.book .hd{display:grid;grid-template-columns:1fr auto auto;gap:10px;font-size:12px;letter-spacing:-.01em;color:var(--ink-3)}
+.book .hd span:nth-child(2){text-align:right;min-width:64px}.book .hd span:nth-child(3){min-width:92px;text-align:left}
+.edge{display:grid;grid-template-columns:1fr 72px 104px;gap:10px;align-items:center;font-size:15px;letter-spacing:-.016em}
+.edge .vd{min-width:0}
+.vbar{position:relative;height:6px;border-radius:3px;background:var(--seg);margin:10px 0 0}
+.vbar .band{position:absolute;top:0;height:100%;border-radius:3px;background:var(--ink-3);opacity:.35}
+.vbar .band.ok{background:var(--pos);opacity:.45}
+.vbar .tick{position:absolute;top:-4px;width:1px;height:14px;background:var(--ink-3)}
+.vbar .tick.floor{width:2px;background:var(--blue);top:-5px;height:16px;border-radius:1px}
+.vbar .dot{position:absolute;top:-4px;width:14px;height:14px;border-radius:50%;transform:translateX(-50%);border:2px solid var(--tile);background:var(--ink-3)}
+.vbar .dot.pos{background:var(--pos)}.vbar .dot.neg{background:var(--neg)}
+.vcap{display:flex;justify-content:space-between;gap:8px;font-size:12px;letter-spacing:-.01em;color:var(--ink-3);margin:6px 0 0}
+.caution-line{font-size:12px;letter-spacing:-.01em;color:var(--warn);font-weight:600;margin:4px 0 0}
+.vrow{margin:0 0 4px}
+.edge .mk b{font-weight:600}.edge .mk small{margin-left:6px;color:var(--ink-2)}
+.edge .ev{display:inline-block;width:100%;text-align:center;padding:3px 8px;border-radius:6px;font-size:13px;font-weight:600;letter-spacing:0;background:var(--seg);color:var(--ink-2)}
+.edge .ev.pos{background:var(--pos);color:#fff}.edge .ev.neg{background:var(--neg);color:#fff}
+.ev.pos{color:var(--pos)}.ev.neg{color:var(--neg)}
+.badge{display:inline-block;font-size:13px;font-weight:600;letter-spacing:-.01em;padding:3px 10px;border-radius:980px;white-space:nowrap}
+.badge.cand{background:var(--blue);color:#fff}
+.badge.pass{background:transparent;color:var(--ink-3);font-weight:400;padding-left:0}
+.badge.none{background:transparent;color:var(--ink-3);font-weight:400;padding-left:0}
+.badge.caution{background:transparent;color:var(--warn);font-weight:600;padding:0;font-size:12px}
+.elsewhere{font-size:13px;letter-spacing:-.01em;color:var(--ink-2)}
+.elsewhere b{color:var(--ink);font-weight:600}
+.noquote{font-size:14px;color:var(--ink-3)}
+/* Detail */
+.detail{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:20px}
+.detail .info{grid-column:1;grid-row:1}.detail .calc{grid-column:2;grid-row:1}.detail .prices{grid-column:1/-1;grid-row:2}
+.detail>*{min-width:0}.stack>*{min-width:0}
+.back{display:inline-flex;align-items:center;gap:6px;margin:24px 0 0;font-size:14px;letter-spacing:-.016em;color:var(--link)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin:16px 0}
+.stat{background:var(--tile-2);border-radius:12px;padding:14px 16px}
+.stat label{margin:0 0 4px}
+.stat b{font-size:28px;font-weight:600;letter-spacing:-.01em;line-height:1.1}
+.stat.pos b{color:var(--pos)}.stat.neg b{color:var(--neg)}
+.oddstable td button{min-height:0;padding:6px 10px;border-radius:8px;font-size:13px;line-height:1.35;text-align:left;width:100%;background:var(--tile-2);letter-spacing:-.01em}
+.oddstable td button:hover{background:var(--seg)}
+.oddstable td button.best{box-shadow:inset 0 0 0 1.5px var(--blue)}
+.oddstable tr.primary td:first-child{font-weight:600}
+.oddstable .ev{font-size:12px;display:block;font-weight:600}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:12px 0}
+.screen{border-radius:12px;padding:14px 16px;margin:12px 0;background:var(--tile-2)}
+.screen .hd{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.screen .hd small{font-size:14px;font-weight:600;letter-spacing:-.016em;color:var(--ink)}
+.explain{font-size:14px;line-height:1.42859;letter-spacing:-.016em;color:var(--ink-2);margin:6px 0 14px;max-width:68ch}
+.flags{font-size:14px;letter-spacing:-.016em;color:var(--ink-2);padding-left:18px}
+.flags li{margin:4px 0}
+.drivers{display:grid;grid-template-columns:1fr auto;gap:4px 12px;font-size:14px;letter-spacing:-.016em}
+.drivers .d{text-align:right;font-weight:600}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:15px;letter-spacing:-.016em}
+.kv b{font-weight:600;font-size:21px}
+.local-tag{font-size:11px;color:var(--warn);font-weight:600}
+.sync-ok{color:var(--pos);font-weight:600}
+.section-title{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 12px;margin:0 0 6px}
+.section-title h2{font-size:24px;letter-spacing:.009em}
+.stack{display:flex;flex-direction:column;gap:16px;margin-top:20px}
+textarea{min-height:120px;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace}
+.hidden{display:none!important}
+.foot{max-width:980px;margin:40px auto 0;padding:20px 0 0;border-top:1px solid var(--hair);font-size:12px;line-height:1.33337;letter-spacing:-.01em;color:var(--ink-3)}
+.foot b{color:var(--ink-2);font-weight:600}
+@media (max-width:900px){
+  header.localnav{-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--tile)}
+  .ln-inner{padding:0 16px;height:48px;gap:12px}
+  .brand{font-size:17px}
+  nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:30;margin:0;gap:0;background:var(--nav);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-top:1px solid var(--hair);padding:6px 0 max(8px,env(safe-area-inset-bottom))}
+  nav.tabs a{flex:1;text-align:center;font-size:11px;padding:6px 2px;opacity:.6}
+  nav.tabs a.active{opacity:1;color:var(--blue);font-weight:600}
+  nav.tabs .lbl-long{display:none}nav.tabs .lbl-short{display:inline}
+  .model-pick{margin-left:auto}.model-pick label{display:none}
+  main,#banners{padding:0 16px}
+  .shell{padding-bottom:96px}
+  h1{font-size:32px;line-height:1.125}.hero{padding:36px 0 20px}.hero .sub{font-size:17px;letter-spacing:-.022em}.hero.small h1{font-size:28px}
+  .detail{grid-template-columns:1fr}
+  .detail .info,.detail .calc,.detail .prices{grid-column:auto;grid-row:auto}
+  .detail .prices{order:2}.detail .calc{order:3}
+  #toast{bottom:88px}
+}
+@media (max-width:700px){
+  .grid{grid-template-columns:1fr}
+  .card{padding:20px}
+  th,td{padding:8px 10px}
+  .filters{justify-content:flex-start}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style><style>
+.picks{max-width:720px;margin:0 auto}
+.pick{display:grid;grid-template-columns:36px 1fr;gap:14px;margin-top:14px}
+.rank{font-size:28px;font-weight:600;letter-spacing:-.01em;color:var(--ink-3);line-height:1;padding-top:4px}
+.pick-game{font-size:14px;letter-spacing:-.016em;color:var(--ink-2)}.pick-game small{margin-left:8px;color:var(--ink-3);font-size:12px}
+.pick-line{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:6px}
+.pick-line b{font-size:22px;font-weight:600;letter-spacing:-.01em}.pick-line small{color:var(--ink-2);font-size:14px}
+.pick-line .ev{display:inline-block;min-width:72px;text-align:center;padding:3px 8px;border-radius:6px;font-size:14px;font-weight:600;background:var(--seg);color:var(--ink-2)}
+.pick-line .ev.pos{background:var(--pos);color:#fff}.pick-line .ev.neg{background:var(--neg);color:#fff}
+.pick-why{font-size:14px;letter-spacing:-.016em;color:var(--ink-2);margin:10px 0 0}
+.pick .vbar{margin-top:14px}
+.picks h2{font-size:24px;margin:36px 0 4px;letter-spacing:.009em}
+.picks .explain{margin:0 0 6px}
+.cta{display:inline-block;margin-top:8px;font-size:17px}
+.cta::after{content:" \203A"}
+</style></head><body><a class="skip" href="#picks">Skip to content</a><div class="shell"><header class="localnav"><div class="ln-inner"><a class="brand" href="./">NFL Lines Lab</a><nav class="tabs"><a href="../">All games</a><a class="active" href="./">Picks</a></nav></div></header><main id="picks"><section class="hero"><h1>Week 1 picks.</h1><p class="sub">Ranked by how well the value holds up, not by how big the number looks.</p><p class="meta caption">Hard Rock Bet prices as of Tue, Sep 8, 2:43 PM ET. Model data through 2026-09-09.</p></section><div class="picks"><h2>Worth a look</h2><p class="explain">Each of these stayed positive when re-checked 18 ways: five model versions, with the line moved 2 points against you and 2 points for you. The green pill is the value per $1 at the price; the bar shows the range across those checks and the blue tick is the 2% floor.</p><article class="card pick"><div class="rank">1</div><div class="pick-body"><div class="pick-game">Arizona Cardinals at Los Angeles Chargers<small>Sun, Sep 13, 4:25 PM ET</small></div><div class="pick-line"><b>ARI to win</b><small>+400 at Hard Rock Bet</small><span class="ev pos">+86.3%</span><span class="badge cand">Worth a look</span></div><div class="vbar" role="img" aria-label="Value +86.3%; range +26.1% to +122.6%; floor +2.0%"><span class="tick" style="left:40.0%"></span><span class="tick floor" style="left:42.7%"></span><span class="band ok" style="left:74.8%;width:25.2%"></span><span class="dot pos" style="left:100.0%"></span></div><div class="vcap"><span>Worst case +26.1% across 18 checks</span><span>Floor +2.0%</span></div><p class="pick-why">Model gives this side a 37% chance; the price implies 20%.</p></div></article><article class="card pick"><div class="rank">2</div><div class="pick-body"><div class="pick-game">New Orleans Saints at Detroit Lions<small>Sun, Sep 13, 1:00 PM ET</small></div><div class="pick-line"><b>Under 50</b><small>-110 at Hard Rock Bet</small><span class="ev pos">+30.8%</span><span class="badge cand">Worth a look</span></div><div class="vbar" role="img" aria-label="Value +30.8%; range +8.0% to +36.2%; floor +2.0%"><span class="tick" style="left:40.0%"></span><span class="tick floor" style="left:42.7%"></span><span class="band ok" style="left:50.7%;width:37.6%"></span><span class="dot pos" style="left:81.1%"></span></div><div class="vcap"><span>Worst case +8.0% across 18 checks</span><span>Floor +2.0%</span></div><p class="pick-why">Model total 46.5 vs. the line at 50.</p></div></article><article class="card pick"><div class="rank">3</div><div class="pick-body"><div class="pick-game">Baltimore Ravens at Indianapolis Colts<small>Sun, Sep 13, 1:00 PM ET</small></div><div class="pick-line"><b>IND to win</b><small>+155 at Hard Rock Bet</small><span class="ev pos">+35.5%</span><span class="badge cand">Worth a look</span></div><div class="vbar" role="img" aria-label="Value +35.5%; range +7.8% to +64.7%; floor +2.0%"><span class="tick" style="left:40.0%"></span><span class="tick floor" style="left:42.7%"></span><span class="band ok" style="left:50.4%;width:49.6%"></span><span class="dot pos" style="left:87.3%"></span></div><div class="vcap"><span>Worst case +7.8% across 18 checks</span><span>Floor +2.0%</span></div><p class="pick-why">Model gives this side a 53% chance; the price implies 39%.</p></div></article><article class="card pick"><div class="rank">4</div><div class="pick-body"><div class="pick-game">Tampa Bay Buccaneers at Cincinnati Bengals<small>Sun, Sep 13, 1:00 PM ET</small></div><div class="pick-line"><b>TB to win</b><small>+165 at Hard Rock Bet</small><span class="ev pos">+17.8%</span><span class="badge cand">Worth a look</span></div><div class="vbar" role="img" aria-label="Value +17.8%; range +6.2% to +30.6%; floor +2.0%"><span class="tick" style="left:40.0%"></span><span class="tick floor" style="left:42.7%"></span><span class="band ok" style="left:48.3%;width:32.6%"></span><span class="dot pos" style="left:63.8%"></span></div><div class="vcap"><span>Worst case +6.2% across 18 checks</span><span>Floor +2.0%</span></div><p class="pick-why">Model gives this side a 44% chance; the price implies 38%.</p></div></article><article class="card pick"><div class="rank">5</div><div class="pick-body"><div class="pick-game">Tampa Bay Buccaneers at Cincinnati Bengals<small>Sun, Sep 13, 1:00 PM ET</small></div><div class="pick-line"><b>Under 50.5</b><small>-110 at Hard Rock Bet</small><span class="ev pos">+32.5%</span><span class="badge cand">Worth a look</span></div><div class="vbar" role="img" aria-label="Value +32.5%; range +6.2% to +36.1%; floor +2.0%"><span class="tick" style="left:40.0%"></span><span class="tick floor" style="left:42.7%"></span><span class="band ok" style="left:48.2%;width:40.0%"></span><span class="dot pos" style="left:83.3%"></span></div><div class="vcap"><span>Worst case +6.2% across 18 checks</span><span>Floor +2.0%</span></div><p class="pick-why">Model total 46.3 vs. the line at 50.5.</p></div></article><article class="card pick"><div class="rank">6</div><div class="pick-body"><div class="pick-game">Arizona Cardinals at Los Angeles Chargers<small>Sun, Sep 13, 4:25 PM ET</small></div><div class="pick-line"><b>ARI +9.5</b><small>-105 at Hard Rock Bet</small><span class="ev pos">+39.1%</span><span class="badge cand">Worth a look</span></div><div class="vbar" role="img" aria-label="Value +39.1%; range +3.7% to +44.8%; floor +2.0%"><span class="tick" style="left:40.0%"></span><span class="tick floor" style="left:42.7%"></span><span class="band ok" style="left:45.0%;width:54.7%"></span><span class="dot pos" style="left:92.1%"></span></div><div class="vcap"><span>Worst case +3.7% across 18 checks</span><span>Floor +2.0%</span></div><p class="pick-why">Model: LAC by 4.9. Hard Rock: LAC by 9.5.</p></div></article><article class="card pick"><div class="rank">7</div><div class="pick-body"><div class="pick-game">Miami Dolphins at Las Vegas Raiders<small>Sun, Sep 13, 4:25 PM ET</small></div><div class="pick-line"><b>MIA to win</b><small>+150 at Hard Rock Bet</small><span class="ev pos">+35.9%</span><span class="badge cand">Worth a look</span></div><div class="vbar" role="img" aria-label="Value +35.9%; range +29.6% to +59.9%; floor +2.0%"><span class="tick" style="left:40.0%"></span><span class="tick floor" style="left:42.7%"></span><span class="band ok" style="left:79.4%;width:20.6%"></span><span class="dot pos" style="left:87.9%"></span></div><div class="vcap"><span>Worst case +29.6% across 18 checks</span><span>Floor +2.0%</span></div><p class="pick-why">Model gives this side a 54% chance; the price implies 40%.</p><div class="caution-line">⚠ Far from market (7 pts). The model and Hard Rock disagree by more than 5 points; in past seasons the market was usually closer. Treat as a flag, not an edge.</div></div></article><article class="card pick"><div class="rank">8</div><div class="pick-body"><div class="pick-game">Miami Dolphins at Las Vegas Raiders<small>Sun, Sep 13, 4:25 PM ET</small></div><div class="pick-line"><b>MIA +3.5</b><small>-115 at Hard Rock Bet</small><span class="ev pos">+28.4%</span><span class="badge cand">Worth a look</span></div><div class="vbar" role="img" aria-label="Value +28.4%; range +10.6% to +41.4%; floor +2.0%"><span class="tick" style="left:40.0%"></span><span class="tick floor" style="left:42.7%"></span><span class="band ok" style="left:54.1%;width:41.1%"></span><span class="dot pos" style="left:77.8%"></span></div><div class="vcap"><span>Worst case +10.6% across 18 checks</span><span>Floor +2.0%</span></div><p class="pick-why">Model: MIA by 3.8. Hard Rock: LV by 3.5.</p><div class="caution-line">⚠ Far from market (7 pts). The model and Hard Rock disagree by more than 5 points; in past seasons the market was usually closer. Treat as a flag, not an edge.</div></div></article><article class="card pick"><div class="rank">9</div><div class="pick-body"><div class="pick-game">Denver Broncos at Kansas City Chiefs<small>Mon, Sep 14, 8:15 PM ET</small></div><div class="pick-line"><b>DEN to win</b><small>+125 at Hard Rock Bet</small><span class="ev pos">+24.4%</span><span class="badge cand">Worth a look</span></div><div class="vbar" role="img" aria-label="Value +24.4%; range +2.3% to +43.8%; floor +2.0%"><span class="tick" style="left:40.0%"></span><span class="tick floor" style="left:42.7%"></span><span class="band ok" style="left:43.0%;width:55.4%"></span><span class="dot pos" style="left:72.5%"></span></div><div class="vcap"><span>Worst case +2.3% across 18 checks</span><span>Floor +2.0%</span></div><p class="pick-why">Model gives this side a 55% chance; the price implies 44%.</p><div class="caution-line">⚠ Far from market (7 pts). The model and Hard Rock disagree by more than 5 points; in past seasons the market was usually closer. Treat as a flag, not an edge.</div></div></article><h2>Positive value, but fragile</h2><p class="explain">The model likes these at the price, but at least one of the 18 checks turned negative. Fine to watch, thin to bet.</p><article class="card pick"><div class="rank">1</div><div class="pick-body"><div class="pick-game">Dallas Cowboys at New York Giants<small>Sun, Sep 13, 8:20 PM ET</small></div><div class="pick-line"><b>NYG to win</b><small>+130 at Hard Rock Bet</small><span class="ev pos">+40.1%</span><span class="badge pass">Skip</span></div><p class="pick-why">Model gives this side a 61% chance; the price implies 43%.</p><div class="caution-line">⚠ Far from market (7 pts). The model and Hard Rock disagree by more than 5 points; in past seasons the market was usually closer. Treat as a flag, not an edge.</div></div></article><article class="card pick"><div class="rank">2</div><div class="pick-body"><div class="pick-game">New Orleans Saints at Detroit Lions<small>Sun, Sep 13, 1:00 PM ET</small></div><div class="pick-line"><b>NO to win</b><small>+260 at Hard Rock Bet</small><span class="ev pos">+35.5%</span><span class="badge pass">Skip</span></div><p class="pick-why">Model gives this side a 38% chance; the price implies 28%.</p></div></article><article class="card pick"><div class="rank">3</div><div class="pick-body"><div class="pick-game">Dallas Cowboys at New York Giants<small>Sun, Sep 13, 8:20 PM ET</small></div><div class="pick-line"><b>NYG +3.0</b><small>-115 at Hard Rock Bet</small><span class="ev pos">+30.9%</span><span class="badge pass">Skip</span></div><p class="pick-why">Model: NYG by 4.1. Hard Rock: DAL by 3.0.</p><div class="caution-line">⚠ Far from market (7 pts). The model and Hard Rock disagree by more than 5 points; in past seasons the market was usually closer. Treat as a flag, not an edge.</div></div></article><article class="card pick"><div class="rank">4</div><div class="pick-body"><div class="pick-game">Baltimore Ravens at Indianapolis Colts<small>Sun, Sep 13, 1:00 PM ET</small></div><div class="pick-line"><b>IND +3.5</b><small>-115 at Hard Rock Bet</small><span class="ev pos">+26.7%</span><span class="badge pass">Skip</span></div><p class="pick-why">Model: IND by 0.7. Hard Rock: BAL by 3.5.</p></div></article><article class="card pick"><div class="rank">5</div><div class="pick-body"><div class="pick-game">New Orleans Saints at Detroit Lions<small>Sun, Sep 13, 1:00 PM ET</small></div><div class="pick-line"><b>NO +7.0</b><small>-105 at Hard Rock Bet</small><span class="ev pos">+24.2%</span><span class="badge pass">Skip</span></div><p class="pick-why">Model: DET by 4.7. Hard Rock: DET by 7.0.</p></div></article><p style="margin-top:28px"><a class="cta" href="../">See all 16 games and every book's price</a></p><p class="foot"><b>How to read this.</b> Value is what the model expects you would make per $1 at the listed price, ties refunded. The model has been about 0.3 points per game less accurate than the betting market in past seasons, and its worst misses come when it disagrees with the market by a lot; those rows carry a warning. Nothing here is a guaranteed edge or betting advice. Prices are a snapshot; check the book before betting.</p></div></main></div></body></html>
